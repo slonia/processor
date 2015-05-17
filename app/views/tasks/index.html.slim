@@ -1,14 +1,13 @@
 h1 Listing tasks
 
-table
+table.table.table-striped
   thead
     tr
       th Data type
       th Input
       th Output
-      th
-      th
-      th
+      th Status
+      th Actions
 
   tbody
     - @tasks.each do |task|
@@ -16,10 +15,12 @@ table
         td = task.data_type
         td = task.input
         td = task.output
-        td = link_to 'Show', task
-        td = link_to 'Edit', edit_task_path(task)
-        td = link_to 'Destroy', task, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = task.status
+        td
+          .btn-group
+            = link_to 'Show', task, class: 'btn btn-info'
+            = link_to 'Destroy', task, data: {:confirm => 'Are you sure?', :method => :delete }, class: 'btn btn-danger'
 
 br
 
-= link_to 'New Task', new_task_path
+= link_to 'New Task', new_task_path, class: 'btn btn-info'

@@ -1,0 +1,11 @@
+encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+
+
+TAuxDicArticle "Место"
+{
+    key = { "tomita:bornin.cxx" type=CUSTOM }
+}
+

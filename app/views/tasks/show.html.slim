@@ -1,15 +1,11 @@
-p#notice = notice
-
-p
-  strong Data type:
-  = @task.data_type
-p
-  strong Input:
-  = @task.input
-p
-  strong Output:
-  = @task.output
-
-= link_to 'Edit', edit_task_path(@task)
-'|
-= link_to 'Back', tasks_path
+dl
+  dt Input
+  dd
+    = @task.input.url
+    br
+    = @task.input_content
+  dt Output
+  dd
+    = @task.output.url
+    br
+    = @task.output_content
