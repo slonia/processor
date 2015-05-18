@@ -35,7 +35,7 @@ class Task < ActiveRecord::Base
   end
 
   def output_content
-    File.read(Rails.root.to_s + '/public' + self.input.url)
+    File.read(Rails.root.to_s + '/public' + self.output.url)
   end
 
   def set_status
