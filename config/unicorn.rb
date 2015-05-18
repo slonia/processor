@@ -2,16 +2,16 @@ USER = 'berlin'
 
 worker_processes 2
 
-working_directory "/home/#{USER}/processing/current"
+working_directory "/home/#{USER}/processor/current"
 
-listen "/home/#{USER}/processing/current/tmp/sockets/unicorn.processing.sock", :backlog => 64
+listen "/home/#{USER}/processor/current/tmp/sockets/unicorn.processor.sock", :backlog => 64
 
-pid "/home/#{USER}/processing/current/tmp/pids/unicorn.processing.pid"
+pid "/home/#{USER}/processor/current/tmp/pids/unicorn.processor.pid"
 
 preload_app true
 
-stderr_path "/home/#{USER}/processing/current/log/unicorn.stdout.log"
-stdout_path "/home/#{USER}/processing/current/log/unicorn.stdout.log"
+stderr_path "/home/#{USER}/processor/current/log/unicorn.stdout.log"
+stdout_path "/home/#{USER}/processor/current/log/unicorn.stdout.log"
 
 
 after_fork do |server, worker|
