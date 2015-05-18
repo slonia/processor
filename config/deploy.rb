@@ -4,7 +4,7 @@ lock '3.3.5'
 set :application, 'processor'
 
 set :repo_url, 'git@github.com:slonia/processor.git'
-set :linked_dirs, fetch(:linked_dirs, []) + %w[log tmp/pids tmp/cache tmp/sockets public/system]
+set :linked_dirs, fetch(:linked_dirs, []) + %w[log tmp/pids tmp/cache tmp/sockets public/processing public/uploads]
 set :linked_files, %w[config/database.yml config/secrets.yml]
 set :log_level, :info
 
