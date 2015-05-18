@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
-gem 'capistrano'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'enumerize'
@@ -26,3 +25,10 @@ group :development, :test do
   gem 'pry-rails'
 end
 
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-console'
+  gem 'capistrano-rbenv'
+end
