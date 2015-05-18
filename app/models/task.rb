@@ -23,11 +23,10 @@ class Task < ActiveRecord::Base
     to2 = to.to_s.gsub(/ /, '\ ')
     %x[cd #{to2} && tomita config.proto]
     result = to.to_s + '/output.txt'
-    sleep 10
     self.output = File.open(result)
     self.status = 'processed'
     self.save
-    FileUtils.rmdir(to)
+    FileUtils.rm_rf(to)
   end
 
   def input_content
