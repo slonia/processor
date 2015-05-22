@@ -1,0 +1,15 @@
+encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+import "facttypes.proto";
+
+TAuxDicArticle "дата"
+{
+    key = { "alg:date" type=CUSTOM }
+}
+
+TAuxDicArticle "Date"
+{
+    key = { "tomita:fioborn.cxx" type=CUSTOM }
+}

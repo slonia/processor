@@ -14,8 +14,8 @@ class Task < ActiveRecord::Base
   end
 
   def process
-    from = Rails.root.join('public', 'parsers', data_type)
-    to = Rails.root.join('public', 'processing', id.to_s)
+    from = Rails.root.join('lib', 'parsers', data_type)
+    to = Rails.root.join('tmp', 'processing', id.to_s)
     FileUtils.copy_entry(from, to)
     file = Rails.root.join('public').to_s + input.url
     out = File.join(to, 'input.txt')
