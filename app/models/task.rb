@@ -27,6 +27,9 @@ class Task < ActiveRecord::Base
     self.status = 'processed'
     self.save
     FileUtils.rm_rf(to)
+  rescue Exception => e
+    self.update_column(:status, "Error: #{e.message || 'Unknown error'}")
+    raise
   end
 
   def input_content
