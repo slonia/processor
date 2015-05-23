@@ -3,6 +3,5 @@ import "facttypes_base.proto";
 
 message Date: NFactType.TFact
 {
-    // Тип данных должен быть NFactType.TFio, а не привычный string.
     required string Name = 1;
 }

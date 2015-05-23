@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :send_to_process]
 
   # GET /tasks
   # GET /tasks.json
@@ -59,6 +59,11 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def send_to_process
+    @task.send_to_process
+    redirect_to @task
   end
 
   private

@@ -4,6 +4,11 @@ import "base.proto";
 import "articles_base.proto";
 import "facttypes.proto";
 
+TAuxDicArticle "месяц"
+{
+    key = { "month.txt" type=FILE }
+}
+
 TAuxDicArticle "дата"
 {
     key = { "alg:date" type=CUSTOM }
