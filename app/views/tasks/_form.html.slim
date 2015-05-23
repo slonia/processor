@@ -1,4 +1,4 @@
 = simple_form_for @task do |f|
-  = f.input :data_type
-  = f.input :input
-  = f.submit class: 'btn btn-success'
+  = f.input :data_type, include_blank: false, label: 'Тип фактов'
+  = f.input :input, label: 'Входные данные'
+  = f.submit 'Создать', class: 'btn btn-success'

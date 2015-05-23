@@ -1,4 +1,5 @@
 class Task < ActiveRecord::Base
+  default_scope -> {order(created_at: :desc)}
   mount_uploader :input, TextUploader
   mount_uploader :output, TextUploader
   extend Enumerize
@@ -42,5 +43,9 @@ class Task < ActiveRecord::Base
 
   def set_status
     self.status = 'processing'
+  end
+
+  def translated_status
+    status.match('process') ? I18n.t("status.#{status}") : status
   end
 end

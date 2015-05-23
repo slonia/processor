@@ -1,0 +1,14 @@
+ru:
+  status:
+    processing: 'В очереди'
+    processed: 'Обработано'
+  types:
+    date: 'Даты'
+    person: 'Собственные имена'
+    place: 'Географические названия'
+  enumerize:
+    task:
+      data_type:
+        date: 'Даты'
+        person: 'Собственные имена'
+        place: 'Географические названия'

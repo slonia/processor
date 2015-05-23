@@ -1,26 +1,26 @@
-h1 Listing tasks
-= link_to 'New Task', new_task_path, class: 'btn btn-info'
+h1 Задачи
+= link_to 'Добавить', new_task_path, class: 'btn btn-info'
 
 table.table.table-striped
   thead
     tr
-      th Data type
-      th Input
-      th Output
-      th Status
-      th Actions
+      th Тип фактов
+      th Входные данные
+      th Результат
+      th Статус
+      th Действия
 
   tbody
     - @tasks.each do |task|
       tr
-        td = task.data_type
-        td = task.input
-        td = task.output
-        td = task.status
+        td = t("types.#{task.data_type}")
+        td = task.input.present? ? link_to(task.input.url, task.input.url) : ''
+        td = task.output.present? ? link_to(task.output.url, task.output.url) : ''
+        td = task.translated_status
         td
           .btn-group
-            = link_to 'Reprocess', send_to_process_task_path(task), class: 'btn btn-info'
-            = link_to 'Show', task, class: 'btn btn-info'
-            = link_to 'Destroy', task, data: {:confirm => 'Are you sure?', :method => :delete }, class: 'btn btn-danger'
+            = link_to 'Обработать заново', send_to_process_task_path(task), class: 'btn btn-warning'
+            = link_to 'Открыть', task, class: 'btn btn-info'
+            = link_to 'Удалить', task, data: {:confirm => 'Are you sure?', :method => :delete }, class: 'btn btn-danger'
 
 

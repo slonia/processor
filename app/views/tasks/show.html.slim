@@ -1,15 +1,18 @@
 dl
-  dt Input
+  dt Статус
+  dd = @task.translated_status
+  dt Входной файл
   dd
-    = @task.input.url
+    = @task.input.present? ? link_to(@task.input.url, @task.input.url) : ''
     br
     = @task.input_content
-  dt Output
+  dt Обработанный файл
   dd
-    = @task.output.url
+    = @task.output.present? ? link_to(@task.output.url, @task.output.url) : ''
     br
     = @task.output_content
 
 .btn-group
-  = link_to 'Reprocess', send_to_process_task_path(@task), class: 'btn btn-info'
-  = link_to 'Home', root_path, class: 'btn btn-info'
+  = link_to 'Обновить страницу', @task, class: 'btn btn-success'
+  = link_to 'Обработать заново', send_to_process_task_path(@task), class: 'btn btn-warning'
+  = link_to 'Главная', root_path, class: 'btn btn-info'
