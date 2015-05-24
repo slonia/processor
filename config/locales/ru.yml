@@ -3,12 +3,14 @@ ru:
     processing: 'В очереди'
     processed: 'Обработано'
   types:
+    all: 'Все факты'
     date: 'Даты'
     person: 'Собственные имена'
     place: 'Географические названия'
   enumerize:
     task:
       data_type:
+        all: 'Все факты'
         date: 'Даты'
         person: 'Собственные имена'
         place: 'Географические названия'

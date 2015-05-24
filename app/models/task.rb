@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
 
   paginates_per 20
 
-  enumerize :data_type, in: [:place, :person, :date]
+  enumerize :data_type, in: [:all, :place, :person, :date]
 
   after_commit :send_to_process, on: :create
   before_create :set_status

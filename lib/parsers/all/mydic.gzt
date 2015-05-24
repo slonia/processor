@@ -1,0 +1,42 @@
+encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+import "facttypes.proto";
+
+TAuxDicArticle "день"
+{
+    key = { "days.txt" type=FILE }
+}
+
+
+TAuxDicArticle "месяц"
+{
+    key = { "month.txt" type=FILE }
+}
+
+TAuxDicArticle "дата"
+{
+    key = { "alg:date" type=CUSTOM }
+}
+
+TAuxDicArticle "имя"
+{
+  key = { "alg:fio" | "alg:fio_without_surname" type=CUSTOM }
+}
+
+TAuxDicArticle "Date"
+{
+    key = { "tomita:fioborn.cxx" type=CUSTOM }
+}
+
+TAuxDicArticle "People"
+{
+  key = { "tomita:people.cxx" type=CUSTOM }
+}
+
+TAuxDicArticle "Place"
+{
+  key = { "tomita:bornin.cxx" type=CUSTOM }
+}
+
