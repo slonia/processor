@@ -1,6 +1,8 @@
 dl
   dt Статус
   dd = @task.translated_status
+  dt Время обработки
+  dd = @task.human_time
   dt Входной файл
   dd
     = @task.input.present? ? link_to(@task.input.url, @task.input.url) : ''

@@ -12,3 +12,10 @@ ru:
         date: 'Даты'
         person: 'Собственные имена'
         place: 'Географические названия'
+  views:
+    pagination:
+      first: "&laquo; В начало"
+      last: "В конец &raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"

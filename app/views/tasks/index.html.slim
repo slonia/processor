@@ -1,13 +1,17 @@
 h1 Задачи
-= link_to 'Добавить', new_task_path, class: 'btn btn-info'
 
+div
+  = link_to 'Добавить', new_task_path, class: 'btn btn-info'
+
+= pages_for(@tasks)
 table.table.table-striped
   thead
     tr
-      th Тип фактов
+      th = sort_link @q, :data_type, 'Тип фактов'
       th Входные данные
       th Результат
-      th Статус
+      th = sort_link @q, :status, 'Статус'
+      th = sort_link @q, :processing_time, 'Время обработки'
       th Действия
 
   tbody
@@ -17,10 +21,11 @@ table.table.table-striped
         td = task.input.present? ? link_to(task.input.url, task.input.url) : ''
         td = task.output.present? ? link_to(task.output.url, task.output.url) : ''
         td = task.translated_status
+        td = task.human_time
         td
-          .btn-group
-            = link_to 'Обработать заново', send_to_process_task_path(task), class: 'btn btn-warning'
+          .btn-group.btn-group-sm
+            = link_to 'Обработать', send_to_process_task_path(task), class: 'btn btn-warning'
             = link_to 'Открыть', task, class: 'btn btn-info'
             = link_to 'Удалить', task, data: {:confirm => 'Are you sure?', :method => :delete }, class: 'btn btn-danger'
 
-
+= pages_for(@tasks)

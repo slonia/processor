@@ -1,8 +1,11 @@
 class Task < ActiveRecord::Base
+  extend Enumerize
   default_scope -> {order(created_at: :desc)}
+
   mount_uploader :input, TextUploader
   mount_uploader :output, TextUploader
-  extend Enumerize
+
+  paginates_per 20
 
   enumerize :data_type, in: [:place, :person, :date]
 
@@ -22,10 +25,13 @@ class Task < ActiveRecord::Base
     out = File.join(to, 'input.txt')
     FileUtils.copy_entry(file, out)
     to2 = to.to_s.gsub(/ /, '\ ')
+    start_time = Time.now.to_f
     %x[cd #{to2} && tomita config.proto]
+    end_time = Time.now.to_f
     result = to.to_s + '/output.txt'
     self.output = File.open(result)
     self.status = 'processed'
+    self.processing_time = end_time - start_time
     self.save
     FileUtils.rm_rf(to)
   rescue Exception => e
@@ -47,5 +53,9 @@ class Task < ActiveRecord::Base
 
   def translated_status
     status.match('process') ? I18n.t("status.#{status}") : status
+  end
+
+  def human_time
+    self.processing_time ? "#{self.processing_time.round(3)} сек." : ''
   end
 end
