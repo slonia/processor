@@ -14,6 +14,13 @@ ru:
         date: 'Даты'
         person: 'Собственные имена'
         place: 'Географические названия'
+      input_from:
+        url: URL
+        file: Локальный файл
+        text: Текст
+      url_type:
+        tut: Tut.by
+        wiki: Русская Wikipedia
   views:
     pagination:
       first: "&laquo; В начало"

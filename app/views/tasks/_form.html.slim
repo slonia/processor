@@ -1,4 +1,14 @@
 = simple_form_for @task do |f|
   = f.input :data_type, include_blank: false, label: 'Тип фактов'
-  = f.input :input, label: 'Входные данные'
+  = f.input :input_from, label: 'Тип источника', include_blank: false
+  - show = (@task.errors.keys & [:url, :file, :text]).blank? || @task.errors.keys.include?(:file)
+  #file style="display: #{show ? 'block' : 'none'}"
+    = f.input :input, label: 'Входные данные'
+  - show = @task.errors.keys.include?(:url)
+  #url style="display: #{show ? 'block' : 'none'}"
+    = f.input :url_type, label: 'Сайт', include_blank: false, wrapper_html: {class: 'col-md-3'}
+    = f.input :url, label: 'Страница', as: :string, wrapper_html: {class: 'col-md-9'}
+  - show = @task.errors.keys.include?(:text)
+  #text style="display: #{show ? 'block' : 'none'}"
+    = f.input :text, label: 'Входные данные'
   = f.submit 'Создать', class: 'btn btn-success'

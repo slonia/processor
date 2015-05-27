@@ -2,22 +2,65 @@ class Task < ActiveRecord::Base
   extend Enumerize
   default_scope -> {order(created_at: :desc)}
 
+  ALLOWED_TYPES = [:file, :text, :url]
+  SITES = {
+    tut: 'tut.by',
+    wiki: 'ru.wikipedia.org'
+  }
   mount_uploader :input, TextUploader
   mount_uploader :output, TextUploader
 
   paginates_per 20
 
   enumerize :data_type, in: [:all, :place, :person, :date]
+  enumerize :input_from, in: ALLOWED_TYPES
+  enumerize :url_type, in: SITES.keys
 
-  after_commit :send_to_process, on: :create
+  validate :url_for_site
+
+  after_create :send_to_process
   before_create :set_status
 
 
   def send_to_process
-    TomitaWorker.perform_async(self.id)
+    if Rails.env.production?
+      TomitaWorker.perform_async(self.id)
+    else
+      self.process
+    end
   end
 
   def process
+    name = "process_from_#{input_from}"
+    send(name)
+  end
+
+  def prepare_html
+    content = Nokogiri::HTML(open(url))
+    content.css('head').find_all.map(&:remove)
+    content.css('script').find_all.map(&:remove)
+    tag_id = (url_type == :tut) ? '#article_body' : '#bodyContent'
+    content.at_css(tag_id).text
+  end
+
+  def process_from_url
+    web_text = prepare_html
+    name = "tmp/#{Time.now.to_i}.txt"
+    file = File.open(name, "w") { |f| f.write(web_text) }
+    self.input = File.open(name)
+    self.save
+    process_from_file
+  end
+
+  def process_from_text
+    name = "tmp/#{Time.now.to_i}.txt"
+    file = File.open(name, "w") { |f| f.write(text) }
+    self.input = File.open(name)
+    self.save
+    process_from_file
+  end
+
+  def process_from_file
     from = Rails.root.join('lib', 'parsers', data_type)
     to = Rails.root.join('tmp', 'processing', id.to_s)
     FileUtils.copy_entry(from, to)
@@ -57,5 +100,11 @@ class Task < ActiveRecord::Base
 
   def human_time
     self.processing_time ? "#{self.processing_time.round(3)} сек." : ''
+  end
+
+  def url_for_site
+    if input_from == :url
+      errors.add(:url, 'Адрес не соответствует выбранному сайту') unless url.match(SITES[url_type.to_sym])
+    end
   end
 end

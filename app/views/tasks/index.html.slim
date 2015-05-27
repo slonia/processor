@@ -8,6 +8,7 @@ table.table.table-striped
   thead
     tr
       th = sort_link @q, :data_type, 'Тип фактов'
+      th = sort_link @q, :input_from, 'Тип данных'
       th Входные данные
       th Результат
       th = sort_link @q, :status, 'Статус'
@@ -18,6 +19,7 @@ table.table.table-striped
     - @tasks.each do |task|
       tr
         td = t("types.#{task.data_type}")
+        td = task.input_from.try(:text)
         td = task.input.present? ? link_to(task.input.url, task.input.url) : ''
         td = task.output.present? ? link_to(task.output.url, task.output.url) : ''
         td = task.translated_status

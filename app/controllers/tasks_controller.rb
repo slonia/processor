@@ -47,6 +47,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:data_type, :input)
+      params.require(:task).permit(:data_type, :input, :input_from, :url, :text, :url_type)
     end
 end
