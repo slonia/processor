@@ -38,8 +38,9 @@ class Task < ActiveRecord::Base
 
   def prepare_html
     content = Nokogiri::HTML(open(url))
-    content.css('head').find_all.map(&:remove)
-    content.css('script').find_all.map(&:remove)
+    ['head', 'script', 'table','img', 'link'].each do |tag|
+      content.css(tag).find_all.map(&:remove)
+    end
     tag_id = (url_type == :tut) ? '#article_body' : '#bodyContent'
     content.at_css(tag_id).text
   end
