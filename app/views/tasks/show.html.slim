@@ -2,21 +2,35 @@
   = link_to 'Обновить страницу', @task, class: 'btn btn-success'
   = link_to 'Обработать заново', send_to_process_task_path(@task), class: 'btn btn-warning'
   = link_to 'Главная', root_path, class: 'btn btn-info'
-dl
-  dt Статус
-  dd = @task.translated_status
-  dt Время обработки
-  dd = @task.human_time
-  dt Входной файл
-  dd
-    = @task.input.present? ? link_to(@task.input.url, @task.input.url) : ''
-    br
-    = @task.input_content
-  dt Обработанный файл
-  dd
-    = @task.output.present? ? link_to(@task.output.url, @task.output.url) : ''
-    br
-    = @task.output_content
+
+br
+br
+.panel-group#accordion aria-multiselectable="true"
+  .panel.panel-default
+    .panel-heading#headingOne role="tab"
+      h4.panel-title
+        a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+          | Входные данные
+    #collapseOne.panel-collapse.collapse.in role="tabpanel" aria-labelledby="headingOne"
+      .panel-body = @task.input_content || "Текст недоступен"
+
+  .panel.panel-default
+    .panel-heading#headingTwo role="tab"
+      h4.panel-title
+        a.collapsed data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"
+          | Выходные данные
+    #collapseTwo.panel-collapse.collapse role="tabpanel" aria-labelledby="headingTwo"
+      .panel-body = @task.output_content || "Текст недоступен"
+
+  .panel.panel-default
+    .panel-heading#headingThree role="tab"
+      h4.panel-title
+        a.collapsed data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree"
+          | Отладочная информация
+    #collapseThree.panel-collapse.collapse role="tabpanel" aria-labelledby="headingThree"
+      .panel-body#debug_html = @task.debug_content || "Текст недоступен"
+
+br
 
 .btn-group
   = link_to 'Обновить страницу', @task, class: 'btn btn-success'

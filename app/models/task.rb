@@ -9,6 +9,7 @@ class Task < ActiveRecord::Base
   }
   mount_uploader :input, TextUploader
   mount_uploader :output, TextUploader
+  mount_uploader :debug_info, TextUploader
 
   paginates_per 20
 
@@ -75,6 +76,7 @@ class Task < ActiveRecord::Base
     self.output = File.open(result)
     self.status = 'processed'
     self.processing_time = end_time - start_time
+    self.debug_info = File.open(result.gsub('output.txt', 'debug.html'))
     self.save
     FileUtils.rm_rf(to)
   rescue Exception => e
@@ -88,6 +90,10 @@ class Task < ActiveRecord::Base
 
   def output_content
     File.read(Rails.root.to_s + '/public' + self.output.url) if self.output.url
+  end
+
+  def debug_content
+    File.read(Rails.root.to_s + '/public' + self.debug_info.url).html_safe if self.debug_info.url
   end
 
   def set_status

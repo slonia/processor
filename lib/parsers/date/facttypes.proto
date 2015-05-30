@@ -3,5 +3,5 @@ import "facttypes_base.proto";
 
 message Date: NFactType.TFact
 {
-    required string Name = 1;
+    required string Date = 1;
 }

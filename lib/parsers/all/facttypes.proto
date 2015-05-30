@@ -3,14 +3,13 @@ import "facttypes_base.proto";
 
 message Place: NFactType.TFact
 {
-    required string Name = 1;
+    required string Place = 1;
 }
 message Person: NFactType.TFact
 {
-    // Тип данных должен быть NFactType.TFio, а не привычный string.
-    required NFactType.TFio Name = 1;
+    required NFactType.TFio Person = 1;
 }
 message Date: NFactType.TFact
 {
-    required string Name = 1;
+    required string Date = 1;
 }

@@ -1,9 +1,9 @@
 encoding "utf8";
 
 TTextMinerConfig {
-  Dictionary = "mydic.gzt";
+  Dictionary = "people.gzt";
 
-  PrettyOutput = "PrettyOutput.html";
+  PrettyOutput = "debug.html";
 
   Input = {
     File = "input.txt";

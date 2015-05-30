@@ -2,4 +2,4 @@
 
 PersonName -> Word<kwtype="имя">;
 
-Person -> PersonName interp (Person.Name);
+Person -> PersonName interp (Person.Person);

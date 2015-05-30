@@ -1,20 +1,18 @@
 encoding "utf8";
 
 TTextMinerConfig {
-  Dictionary = "mydic.gzt";
+  Dictionary = "all.gzt";
 
-  PrettyOutput = "PrettyOutput.html";
+  PrettyOutput = "debug.html";
 
   Input = {
     File = "input.txt";
   }
 
   Articles = [
-    { Name = "дата" },
-    { Name = "имя" },
-    { Name = "Date" },
-    { Name = "Place" },
-    { Name = "People" }
+    { Name = "РезультатДата" },
+    { Name = "Люди" },
+    { Name = "Место" }
   ]
 
   Facts = [

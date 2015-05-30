@@ -1,0 +1,21 @@
+encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+import "facttypes.proto";
+
+TAuxDicArticle "АдмЕдиница"
+{
+  key = { "область" | "край" | "район" | "уезд" | "сельсовет" | "райцентр"}
+}
+
+TAuxDicArticle "СтраныСтолицы"
+{
+  key = { "places.txt" type=FILE }
+}
+
+TAuxDicArticle "Место"
+{
+    key = { "tomita:places.cxx" type=CUSTOM }
+}
+

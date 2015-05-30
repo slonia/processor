@@ -1,0 +1,52 @@
+encoding "utf8";
+
+import "base.proto";
+import "articles_base.proto";
+import "facttypes.proto";
+
+TAuxDicArticle "День"
+{
+    key = { "days.txt" type=FILE }
+}
+
+
+TAuxDicArticle "Месяц"
+{
+    key = { "month.txt" type=FILE }
+}
+
+TAuxDicArticle "Дата"
+{
+    key = { "alg:date" type=CUSTOM }
+}
+
+TAuxDicArticle "Имя"
+{
+  key = { "alg:fio" | "alg:fio_without_surname" type=CUSTOM }
+}
+
+TAuxDicArticle "АдмЕдиница"
+{
+  key = { "область" | "край" | "район" | "уезд" | "сельсовет" | "райцентр"}
+}
+
+TAuxDicArticle "СтраныСтолицы"
+{
+  key = { "places.txt" type=FILE }
+}
+
+TAuxDicArticle "РезультатДата"
+{
+    key = { "tomita:dates.cxx" type=CUSTOM }
+}
+
+TAuxDicArticle "Люди"
+{
+  key = { "tomita:people.cxx" type=CUSTOM }
+}
+
+TAuxDicArticle "Место"
+{
+  key = { "tomita:places.cxx" type=CUSTOM }
+}
+

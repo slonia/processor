@@ -3,5 +3,5 @@ import "facttypes_base.proto";
 
 message Place: NFactType.TFact
 {
-    required string Name = 1;
+    required string Place = 1;
 }

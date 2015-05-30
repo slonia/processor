@@ -4,23 +4,23 @@ import "base.proto";
 import "articles_base.proto";
 import "facttypes.proto";
 
-TAuxDicArticle "день"
+TAuxDicArticle "День"
 {
     key = { "days.txt" type=FILE }
 }
 
 
-TAuxDicArticle "месяц"
+TAuxDicArticle "Месяц"
 {
     key = { "month.txt" type=FILE }
 }
 
-TAuxDicArticle "дата"
+TAuxDicArticle "Дата"
 {
     key = { "alg:date" type=CUSTOM }
 }
 
-TAuxDicArticle "Date"
+TAuxDicArticle "РезультатДата"
 {
-    key = { "tomita:fioborn.cxx" type=CUSTOM }
+    key = { "tomita:dates.cxx" type=CUSTOM }
 }

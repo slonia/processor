@@ -1,5 +1,5 @@
 #encoding "utf-8"
 
-PersonName -> Word<kwtype="имя">;
+PersonName -> Word<kwtype="Имя">;
 
-Person -> PersonName interp (Person.Name);
+Person -> PersonName interp (Person.Person);

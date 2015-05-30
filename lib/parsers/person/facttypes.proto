@@ -4,5 +4,5 @@ import "facttypes_base.proto";
 message Person: NFactType.TFact
 {
     // Тип данных должен быть NFactType.TFio, а не привычный string.
-    required NFactType.TFio Name = 1;
+    required NFactType.TFio Person = 1;
 }
