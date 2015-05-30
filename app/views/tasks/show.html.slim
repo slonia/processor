@@ -4,7 +4,18 @@
   = link_to 'Главная', root_path, class: 'btn btn-info'
 
 br
-br
+dl
+  dt Статус
+  dd = @task.translated_status
+  dt Время обработки
+  dd = @task.human_time
+  dt Входной файл
+  dd = @task.input.present? ? link_to(@task.input.url, @task.input.url) : ''
+  dt Обработанный файл
+  dd = @task.output.present? ? link_to(@task.output.url, @task.output.url) : ''
+  dt Отладочная информация
+  dd = @task.debug_info.present? ? link_to(@task.debug_info.url, @task.debug_info.url) : ''
+
 .panel-group#accordion aria-multiselectable="true"
   .panel.panel-default
     .panel-heading#headingOne role="tab"
