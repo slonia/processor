@@ -93,7 +93,13 @@ GEM
     execjs (2.5.2)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    griddler (1.2.1)
+      htmlentities
+      rails (>= 3.2.0)
+    griddler-sendgrid (0.0.1)
+      griddler
     hitimes (1.2.2)
+    htmlentities (4.3.4)
     i18n (0.7.0)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
@@ -253,6 +259,8 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   enumerize
+  griddler
+  griddler-sendgrid
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
